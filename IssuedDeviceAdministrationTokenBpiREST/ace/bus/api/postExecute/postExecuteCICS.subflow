@@ -45,8 +45,8 @@
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="454,234">
         <translation xmi:type="utility:ConstantString" string="LocalTrace"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="564,234" computeExpression="esql://routine/ace.bus.api.postExecute#postExecuteCICS_Local_MockRes.Main">
-        <translation xmi:type="utility:ConstantString" string="Local_MockRes"/>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="564,234" computeExpression="esql://routine/ace.bus.api.postExecute#postExecuteCICS_LocalMockRes.Main">
+        <translation xmi:type="utility:ConstantString" string="LocalMockRes"/>
       </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="709,179">
         <translation xmi:type="utility:ConstantString" string="Trace6"/>
