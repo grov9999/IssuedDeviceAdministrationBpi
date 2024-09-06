@@ -3,8 +3,78 @@
   "info" : {
     "title" : "IssuedDeviceAdministrationTokenBpiREST",
     "version" : "1.0.0",
-    "description" : "IssuedDeviceAdministrationTokenBpiREST"
+    "description" : "Asginar Token"
   },
-  "paths" : { },
+  "paths" : {
+    "/token-assign/execute" : {
+      "post" : {
+        "operationId" : "postExecute",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a execute",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        }, {
+          "name" : "branchId",
+          "in" : "header",
+          "type" : "string",
+          "description" : "Código de la sucursal donde se realizó la transacción"
+        }, {
+          "name" : "ipOrigen",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "type" : "string",
+          "description" : "Identificador del dispositivo donde se generó la transacción"
+        }, {
+          "name" : "moduloId",
+          "in" : "header",
+          "type" : "string",
+          "description" : "Identificador del módulo de la aplicación consumidora"
+        }, {
+          "name" : "groupMember",
+          "in" : "header",
+          "type" : "string",
+          "description" : "Identificador de miembro del grupo"
+        }, {
+          "name" : "referenceNumber",
+          "in" : "header",
+          "type" : "string",
+          "description" : "Número de referencia de la transacción"
+        }, {
+          "name" : "supervisorId",
+          "in" : "header",
+          "type" : "string",
+          "description" : "Identificador del usuario supervisor que autoriza la transacción"
+        }, {
+          "name" : "serverId",
+          "in" : "header",
+          "type" : "string",
+          "description" : "IP o Hostname del servidor de donde se realizó la transacción"
+        }, {
+          "name" : "userId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "channelId",
+          "in" : "header",
+          "type" : "string"
+        } ]
+      }
+    }
+  },
   "basePath" : "/issued-device-administration/v1"
 }
