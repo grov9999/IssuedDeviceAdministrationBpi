@@ -3,6 +3,9 @@
 	<name>IssuedDeviceAdministrationTokenBpiREST</name>
 	<comment></comment>
 	<projects>
+		<project>IssuedDeviceAdministrationTokenBpiLIB</project>
+		<project>common-core-library</project>
+		<project>control-core-library</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
