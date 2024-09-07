@@ -35,3 +35,13 @@ BEGIN
 	SET refBody.BPICULTK_OCURRS.BPICULTK_CO_SOLI 		= FormatAlignCadena(refBody.tokenNumber,12,' ','IZQ');
 	SET refBody.BPICULTK_OCURRS.BPICULTK_NUM_SERI_TOKN 	= FormatAlignCadena(refBody.tokenCode,22,' ','IZQ');
 END;
+
+CREATE PROCEDURE prepareResponseJSON(IN refOut REFERENCE,IN refEnv REFERENCE)
+BEGIN
+	
+	CREATE LASTCHILD OF refOut DOMAIN 'JSON';
+	CREATE FIELD refOut.JSON.Data;
+	DECLARE refOutData REFERENCE TO refOut.JSON.Data;
+	
+	SET refOutData.batchNumber = refEnv.MOCK.BPICULTK_OCCURS.BPICULTK_NRO_SOLICITUD;
+END;
