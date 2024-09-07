@@ -39,6 +39,32 @@ END MODULE;
 CREATE COMPUTE MODULE postExecuteCICS_PrepareRes
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
+		
+		CALL setMonitoringResponseTime(Environment);
+		
+		DECLARE chrTramaOut CHARACTER;
+		SET chrTramaOut = CAST(InputRoot.BLOB.BLOB AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId);
+		SET Environment.DATOS = chrTramaOut;
+		
+		DECLARE chrCodRes CHARACTER SUBSTRING(chrTramaOut FROM C_IND_COD_RESP FOR C_LNG_COD_RESP);
+		DECLARE chrCodMsg CHARACTER SUBSTRING(chrTramaOut FROM C_IND_MSG_RESP FOR C_LNG_MSG_RESP);
+		DECLARE responseType INTEGER COALESCE(Environment.StatusRes.status.responseType,-1);
+		SET Environment.COD = chrCodRes;
+		
+		IF chrCodRes = C_CICS_OK_RESP OR responseType = 0 THEN
+			CALL createResponseStatus(Environment,NULL,0,'EJECUCIÓN CON ÉXITO',chrCodRes,chrCodMsg);
+			CALL isSuccessCategoryCICS(Environment.StatusRes,Environment,Environment.Equivalencias);
+			CALL createHeaderBus(OutputRoot,Environment);
+			CALL parsingTramaCICS(InputRoot,Environment,C_NS);
+			CALL prepareResponseJSON(OutputRoot,Environment);
+		ELSE
+			CALL createHeaderErrorCICS(OutputRoot,Environment,OutputLocalEnvironment,chrCodRes,4,chrCodMsg);
+		END IF;
+		
+		--Audit response and reply data
+		CALL setMonitoringEndTime(Environment);
+		CALL getResponseDataAudit(Environment,OutputRoot,OutputLocalEnvironment,'5');
+		
 		RETURN TRUE;
 	END;
 END MODULE;
