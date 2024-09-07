@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:dfdlCobolFmt="http://www.ibm.com/dfdl/CobolDataDefinitionFormat" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+  <xsd:import namespace="http://www.ibm.com/dfdl/CobolDataDefinitionFormat" schemaLocation="IBMdefined/CobolDataDefinitionFormat.xsd"/>
+  <xsd:complexType name="REGBPICULTK">
+    <xsd:sequence>
+      <xsd:element dfdl:lengthKind="implicit" name="BPICULTK_INPUT">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element default="0" dfdl:decimalSigned="no" dfdl:length="2" dfdl:textNumberPattern="00+" name="BPICULTK_COD_OPE">
+              <xsd:annotation>
+                <xsd:documentation>PIC 9(2) display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PIC9-Display-Zoned__short">
+                  <xsd:minInclusive value="0"/>
+                  <xsd:maxInclusive value="99"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element default="0" dfdl:decimalSigned="no" dfdl:length="2" dfdl:textNumberPattern="00+" name="BPICULTK_TIPO_FUNCION">
+              <xsd:annotation>
+                <xsd:documentation>PIC 9(2) display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PIC9-Display-Zoned__short">
+                  <xsd:minInclusive value="0"/>
+                  <xsd:maxInclusive value="99"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element default=" " dfdl:length="2" name="BPICULTK_MOTV_ACC">
+              <xsd:annotation>
+                <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                  <initialValue kind="SPACE"/>
+                </xsd:appinfo>
+                <xsd:documentation>PIC X(2) display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                  <xsd:maxLength value="2"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element default=" " dfdl:length="1" name="BPICULTK_TIPO_BANCA">
+              <xsd:annotation>
+                <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                  <initialValue kind="SPACE"/>
+                </xsd:appinfo>
+                <xsd:documentation>PIC X display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                  <xsd:maxLength value="1"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element default=" " dfdl:length="10" name="BPICULTK_CO_USUARIO">
+              <xsd:annotation>
+                <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                  <initialValue kind="SPACE"/>
+                </xsd:appinfo>
+                <xsd:documentation>PIC X(10) display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                  <xsd:maxLength value="10"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element default=" " dfdl:length="4" name="BPICULTK_CO_CANAL">
+              <xsd:annotation>
+                <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                  <initialValue kind="SPACE"/>
+                </xsd:appinfo>
+                <xsd:documentation>PIC X(4) display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                  <xsd:maxLength value="4"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element default=" " dfdl:length="60" name="BPICULTK_DE_LOTE">
+              <xsd:annotation>
+                <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                  <initialValue kind="SPACE"/>
+                </xsd:appinfo>
+                <xsd:documentation>PIC X(60) display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                  <xsd:maxLength value="60"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element dfdl:lengthKind="implicit" maxOccurs="20" minOccurs="20" name="BPICULTK_OCCURS">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element default=" " dfdl:length="12" name="BPICULTK_CO_SOLI">
+                    <xsd:annotation>
+                      <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                        <initialValue kind="SPACE"/>
+                      </xsd:appinfo>
+                      <xsd:documentation>PIC X(12) display</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                        <xsd:maxLength value="12"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element default=" " dfdl:length="22" name="BPICULTK_NUM_SERI_TOKN">
+                    <xsd:annotation>
+                      <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                        <initialValue kind="SPACE"/>
+                      </xsd:appinfo>
+                      <xsd:documentation>PIC X(22) display</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                        <xsd:maxLength value="22"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element dfdl:lengthKind="implicit" name="BPICULTK_OUTPUT">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element dfdl:lengthKind="implicit" maxOccurs="20" minOccurs="20" name="BPICULTK_OCCURS">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element default=" " dfdl:length="22" name="BPICULTK_NRO_TOKEN">
+                    <xsd:annotation>
+                      <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                        <initialValue kind="SPACE"/>
+                      </xsd:appinfo>
+                      <xsd:documentation>PIC X(22) display</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                        <xsd:maxLength value="22"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element default=" " dfdl:length="12" name="BPICULTK_NRO_SOLICITUD">
+                    <xsd:annotation>
+                      <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                        <initialValue kind="SPACE"/>
+                      </xsd:appinfo>
+                      <xsd:documentation>PIC X(12) display</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                        <xsd:maxLength value="12"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element default=" " dfdl:length="2" name="BPICULTK_COD_ERROR">
+                    <xsd:annotation>
+                      <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                        <initialValue kind="SPACE"/>
+                      </xsd:appinfo>
+                      <xsd:documentation>PIC X(2) display</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element default=" " dfdl:length="60" name="BPICULTK_DES_ERROR">
+                    <xsd:annotation>
+                      <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                        <initialValue kind="SPACE"/>
+                      </xsd:appinfo>
+                      <xsd:documentation>PIC X(60) display</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                        <xsd:maxLength value="60"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element default=" " dfdl:length="12" name="BPICULTK_CO_LOTE">
+                    <xsd:annotation>
+                      <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                        <initialValue kind="SPACE"/>
+                      </xsd:appinfo>
+                      <xsd:documentation>PIC X(12) display</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                      <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                        <xsd:maxLength value="12"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element default=" " dfdl:length="2" name="BPICULTK_COD_ERROR_OUT">
+              <xsd:annotation>
+                <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                  <initialValue kind="SPACE"/>
+                </xsd:appinfo>
+                <xsd:documentation>PIC X(2) display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                  <xsd:maxLength value="2"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element default=" " dfdl:length="60" name="BPICULTK_DES_ERROR_OUT">
+              <xsd:annotation>
+                <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                  <initialValue kind="SPACE"/>
+                </xsd:appinfo>
+                <xsd:documentation>PIC X(60) display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                  <xsd:maxLength value="60"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element default=" " dfdl:length="200" name="BPICULTK_FILLER_OUT">
+              <xsd:annotation>
+                <xsd:appinfo source="http://www.wsadie.com/appinfo">
+                  <initialValue kind="SPACE"/>
+                </xsd:appinfo>
+                <xsd:documentation>PIC X(200) display</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="dfdlCobolFmt:PICX__string">
+                  <xsd:maxLength value="200"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:annotation>
+    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+      <dfdl:format binaryFloatRep="{$dfdl:binaryFloatRep}" byteOrder="{$dfdl:byteOrder}" encoding="{$dfdl:encoding}" ignoreCase="yes" leadingSkip="0" occursCountKind="fixed" ref="dfdlCobolFmt:CobolDataFormat" textNumberPadCharacter="0" textStringJustification="left" textStringPadCharacter="%SP;" textZonedSignStyle="asciiStandard" trailingSkip="0"/>
+    </xsd:appinfo>
+  </xsd:annotation>
+  <xsd:annotation>
+    <xsd:documentation>
+	This XSD was created by importing COBOL copybook.
+
+	Source file:	importFiles\BPICULTK.cpy
+
+	Import options:
+		CODEPAGE=IBM037
+		ENDIAN=Big
+		EXTENSION_CBL=FP
+		EXTENSION_CCP=FP
+		EXTENSION_COB=FP
+		EXTENSION_CPY=DS
+		EXT_DECIMAL_SIGN=ASCII
+		FLOATING_POINT_FORMAT=1
+		NSYMBOL=NATIONAL
+		NUMPROC=PFD
+		PLATFORM_SELECTION=2
+		QUOTE=DOUBLE
+		REMOTE_ENDIAN=Little
+		TRUNC=STD
+		SCHEMA_TARGET_NAMESPACE_URI=null
+		CREATE_DEFAULT_VALUES_FROM_INITIAL_VALUES=true
+		CREATE_FACETS_FROM_LEVEL_88_VALUE_CLAUSES=false
+		PRESERVE_CASE_IN_VARIABLE_NAMES=true
+		CREATE_NULL_VALUES_FOR_FIELDS=false
+		NULL_CHARACTER_FOR_STRING=%SP; 
+		NULL_CHARACTER_FOR_NUMBER=%#r00; 
+		STRING_PADDING_CHARACTER=%SP;
+		NUMBER_PADDING_CHARACTER=0
+		DEFAULT_FOR_STRING= 
+		DEFAULT_FOR_NUMBER=0
+
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:element dfdl:lengthKind="implicit" ibmSchExtn:docRoot="true" name="REGBPICULTK" type="REGBPICULTK"/>
+</xsd:schema>
