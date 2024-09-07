@@ -21,7 +21,7 @@
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="314,116">
         <translation xmi:type="utility:ConstantString" string="T_Debug1"/>
       </nodes>
-      <nodes xmi:type="ComIbmCICSIPICRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="411,116" transactionMode="automatic">
+      <nodes xmi:type="ComIbmCICSIPICRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="411,116" cicsServer="{ConfigurationsPOLICY}:Backend_CICS_10s" cicsProgramName="CDSOBCV" cicsCommareaLen="3183" requestTimeoutSecs="10" mirrorTran="ATSE" transactionMode="automatic">
         <translation xmi:type="utility:ConstantString" string="CICS Request"/>
       </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="608,112">
