@@ -1,25 +1,37 @@
 BROKER SCHEMA ace.bus.api.postExecute
+PATH ace.bus.api.postExecute, pe.ibk.common;
 
+CREATE PROCEDURE prepareDataRequestCICS(IN refOut REFERENCE,IN refEnv REFERENCE,IN refParameters REFERENCE,IN refBodyIn REFERENCE)
+BEGIN
+	DECLARE refBody REFERENCE TO refOut;
+	DECLARE isBSEOJIN CHARACTER getParmSecSrv(refEnv,'BSEOJIN');
+	
+	IF isBSEOJIN = 'S' THEN
+		CALL prepareHeaderBSEOJINT(refOut,refEnv,C_NS,refParameters,C_POS_COD_RESP,C_LONG_COD_RESP);
+		CREATE FIELD refOut.{C_NS}:MESSAGEHOST.HEADER_TLDCPAGO;
+		CREATE FIELD refOut.{C_NS}:MESSAGEHOST.BODY AS refOut;
+	ELSE
+		CALL prepareHeaderBSE(refOut,refParameters);
+		CREATE FIELD refOut.{C_MESSAGE_TYPE} AS refOut;
+	END IF;
+	--Configurar la data del input request
+	CALL prepareDataCICS(refEnv,refOut,refBodyIn,refParameters);
+END;
 
-CREATE COMPUTE MODULE libFunctionspostExecute
-	CREATE FUNCTION Main() RETURNS BOOLEAN
-	BEGIN
-		-- CALL CopyMessageHeaders();
-		-- CALL CopyEntireMessage();
-		RETURN TRUE;
-	END;
-
-	CREATE PROCEDURE CopyMessageHeaders() BEGIN
-		DECLARE I INTEGER 1;
-		DECLARE J INTEGER;
-		SET J = CARDINALITY(InputRoot.*[]);
-		WHILE I < J DO
-			SET OutputRoot.*[I] = InputRoot.*[I];
-			SET I = I + 1;
-		END WHILE;
-	END;
-
-	CREATE PROCEDURE CopyEntireMessage() BEGIN
-		SET OutputRoot = InputRoot;
-	END;
-END MODULE;
+CREATE PROCEDURE prepareDataCICS(IN refEnv REFERENCE,IN refOut REFERENCE,IN refBody REFERENCE,IN refParameters REFERENCE)
+BEGIN
+	
+	CREATE FIELD refOut.BPICULTK_INPUT;
+	DECLARE refBodyOut REFERENCE TO refOut.BPICULTK_INPUT;
+	
+	SET refBody.BPICULTK_COD_OPE 		= FormatAlignCadena('02',2,' ','IZQ');
+	SET refBody.BPICULTK_TIPO_FUNCION 	= FormatAlignCadena(refBody.action,2,' ','IZQ');
+	SET refBody.BPICULTK_MOTV_ACC 		= FormatAlignCadena(' ',2,' ','IZQ');
+	SET refBody.BPICULTK_TIPO_BANCA 	= FormatAlignCadena(refBody.bankType,1,' ','IZQ');
+	SET refBody.BPICULTK_CO_USUARIO 	= FormatAlignCadena(refParameters.userId,10,' ','IZQ');
+	SET refBody.BPICULTK_CO_CANAL 		= FormatAlignCadena(refParameters.channelId,4,' ','IZQ');
+	SET refBody.BPICULTK_DE_LOTE 		= FormatAlignCadena(refBody.batchDdescription,60,' ','IZQ');
+--	SET refBody.BPICULTK_OCURRS = FormatAlignCadena('02',2,' ','IZQ');
+	SET refBody.BPICULTK_OCURRS.BPICULTK_CO_SOLI 		= FormatAlignCadena(refBody.tokenNumber,12,' ','IZQ');
+	SET refBody.BPICULTK_OCURRS.BPICULTK_NUM_SERI_TOKN 	= FormatAlignCadena(refBody.tokenCode,22,' ','IZQ');
+END;
