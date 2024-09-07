@@ -24,16 +24,15 @@ BEGIN
 	CREATE FIELD refOut.BPICULTK_INPUT;
 	DECLARE refBodyOut REFERENCE TO refOut.BPICULTK_INPUT;
 	
-	SET refBody.BPICULTK_COD_OPE 		= FormatAlignCadena('02',2,' ','IZQ');
-	SET refBody.BPICULTK_TIPO_FUNCION 	= FormatAlignCadena(refBody.action,2,' ','IZQ');
-	SET refBody.BPICULTK_MOTV_ACC 		= FormatAlignCadena(' ',2,' ','IZQ');
-	SET refBody.BPICULTK_TIPO_BANCA 	= FormatAlignCadena(refBody.bankType,1,' ','IZQ');
-	SET refBody.BPICULTK_CO_USUARIO 	= FormatAlignCadena(refParameters.userId,10,' ','IZQ');
-	SET refBody.BPICULTK_CO_CANAL 		= FormatAlignCadena(refParameters.channelId,4,' ','IZQ');
-	SET refBody.BPICULTK_DE_LOTE 		= FormatAlignCadena(refBody.batchDdescription,60,' ','IZQ');
---	SET refBody.BPICULTK_OCURRS = FormatAlignCadena('02',2,' ','IZQ');
-	SET refBody.BPICULTK_OCURRS.BPICULTK_CO_SOLI 		= FormatAlignCadena(refBody.tokenNumber,12,' ','IZQ');
-	SET refBody.BPICULTK_OCURRS.BPICULTK_NUM_SERI_TOKN 	= FormatAlignCadena(refBody.tokenCode,22,' ','IZQ');
+	SET refBodyOut.BPICULTK_COD_OPE 		= FormatAlignCadena('02',2,' ','IZQ');
+	SET refBodyOut.BPICULTK_TIPO_FUNCION 	= FormatAlignCadena(refBody.action,2,' ','IZQ');
+	SET refBodyOut.BPICULTK_MOTV_ACC 		= FormatAlignCadena(' ',2,' ','IZQ');
+	SET refBodyOut.BPICULTK_TIPO_BANCA		= FormatAlignCadena(refBody.bankType,1,' ','IZQ');
+	SET refBodyOut.BPICULTK_CO_USUARIO		= FormatAlignCadena(refParameters.userId,10,' ','IZQ');
+	SET refBodyOut.BPICULTK_CO_CANAL 		= FormatAlignCadena(refParameters.channelId,4,' ','IZQ');
+	SET refBodyOut.BPICULTK_DE_LOTE 		= FormatAlignCadena(refBody.batchDdescription,60,' ','IZQ');
+	SET refBodyOut.BPICULTK_OCCURS.BPICULTK_CO_SOLI 		= FormatAlignCadena(refBody.records.Item.tokenNumber,12,' ','IZQ');
+	SET refBodyOut.BPICULTK_OCCURS.BPICULTK_NUM_SERI_TOKN	= FormatAlignCadena(refBody.records.Item.tokenCode,22,' ','IZQ');
 END;
 
 CREATE PROCEDURE prepareResponseJSON(IN refOut REFERENCE,IN refEnv REFERENCE)

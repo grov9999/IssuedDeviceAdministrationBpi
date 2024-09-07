@@ -58,7 +58,7 @@ CREATE COMPUTE MODULE postExecuteCICS_PrepareRes
 			CALL parsingTramaCICS(InputRoot,Environment,C_NS);
 			CALL prepareResponseJSON(OutputRoot,Environment);
 		ELSE
-			CALL createHeaderErrorCICS(OutputRoot,Environment,OutputLocalEnvironment,chrCodRes,4,chrCodMsg);
+			CALL createHeaderErrorCICS(OutputRoot,Environment,OutputLocalEnvironment,chrCodRes,2,chrCodMsg);
 		END IF;
 		
 		--Audit response and reply data
