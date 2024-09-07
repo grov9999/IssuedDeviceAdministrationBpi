@@ -21,6 +21,7 @@ CREATE COMPUTE MODULE postExecuteCICS_PrepareReq
 		
 		--Input request data JSON to DFDL
 		CREATE LASTCHILD OF OutputRoot DOMAIN 'DFDL';
+		DECLARE refBodyOut REFERENCE TO OutputRoot.DFDL;
 		CALL prepareDataRequestCICS(refBodyOut,refEnv,refParametersIn,refBody);
 		--
 		CALL setConfigPropertiesCICS(OutputLocalEnvironment,refEnv);
