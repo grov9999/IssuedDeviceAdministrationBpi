@@ -44,21 +44,22 @@ CREATE COMPUTE MODULE postExecuteCICS_PrepareRes
 		
 		DECLARE chrTramaOut CHARACTER;
 		SET chrTramaOut = CAST(InputRoot.BLOB.BLOB AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId);
-		SET Environment.DATOS = chrTramaOut;
+--		SET Environment.DATOS = chrTramaOut;
 		
 		DECLARE chrCodRes CHARACTER SUBSTRING(chrTramaOut FROM C_IND_COD_RESP FOR C_LNG_COD_RESP);
 		DECLARE chrCodMsg CHARACTER SUBSTRING(chrTramaOut FROM C_IND_MSG_RESP FOR C_LNG_MSG_RESP);
 		DECLARE responseType INTEGER COALESCE(Environment.StatusRes.status.responseType,-1);
-		SET Environment.COD = chrCodRes;
+--		SET Environment.COD = chrCodRes;
+--		SET Environment.MSG = chrCodMsg;
 		
 		IF chrCodRes = C_CICS_OK_RESP OR responseType = 0 THEN
-			CALL createResponseStatus(Environment,NULL,0,'EJECUCIÓN CON ÉXITO',chrCodRes,chrCodMsg);
-			CALL isSuccessCategoryCICS(Environment.StatusRes,Environment,Environment.Equivalencias);
+			CALL createResponseStatus(Environment,NULL,C_COD_EXITO_RESP,C_MSJ_EXITO_RESP,chrCodRes,chrCodMsg);
+--			CALL isSuccessCategoryCICS(Environment.StatusRes,Environment,Environment.Equivalencias);
 			CALL createHeaderBus(OutputRoot,Environment);
 			CALL parsingTramaCICS(InputRoot,Environment,C_NS);
 			CALL prepareResponseJSON(OutputRoot,Environment);
 		ELSE
-			CALL createHeaderErrorCICS(OutputRoot,Environment,OutputLocalEnvironment,chrCodRes,2,chrCodMsg);
+			CALL createHeaderErrorCICS(OutputRoot,Environment,OutputLocalEnvironment,chrCodRes,2,C_MSJ_FAIL_RESP);
 		END IF;
 		
 		--Audit response and reply data
@@ -122,6 +123,7 @@ CREATE COMPUTE MODULE postExecuteCICS_LocalMockRes
 		DECLARE refDfdlBody REFERENCE TO refMessageIn.BODY.BPICULTK_OUTPUT;
 		
 		SET refDfdlHeader.TLDCPAGO_COD_RET = C_CICS_OK_RESP;
+		SET refDfdlHeader.TLDCPAGO_DES_RET = C_MSJ_OK_RESP;
 		SET refDfdlBody.BPICULTK_OCCURS.BPICULTK_NRO_TOKEN = FormatAlignCadena('11',22,' ','IZQ');
 		SET refDfdlBody.BPICULTK_OCCURS.BPICULTK_NRO_SOLICITUD = FormatAlignCadena('22',12,' ','IZQ');
 		SET refDfdlBody.BPICULTK_OCCURS.BPICULTK_COD_ERROR = FormatAlignCadena('33',2,' ','IZQ');
